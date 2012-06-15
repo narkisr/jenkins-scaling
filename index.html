@@ -49,12 +49,12 @@
 	  </ul>
 	</div>
 
-      <div id="master" class="step title" data-x="-250" data-y="0"> 
-        <div id="container">
-           <div>
+	<div id="master" class="step title" data-x="-250" data-y="0"> 
+	  <div id="container">
+	     <div>
 		<img src="img/sun.png" /> 
 	    </div>
-          <div style="position: absolute; left: 300px; top: -200px;">
+	    <div style="position: absolute; left: 300px; top: -200px;">
 		<b class="Rotate-90">M a s t e r</b>
 	    </div>
 	  </div>
@@ -63,12 +63,14 @@
 
 	<div id="master-resources" class="step" data-x="250" data-y="0">
 	  Keep the webui fast!, the more jobs it will run the slower it will be,  
-	  managing slaves will also require resources.
+	  managing a lot of slaves will also require resources.<br/>
+
+	  Throw a beefy VM at it (IO is less of an issue)
 	  </ul>
 	</div>
 
-      <div id="nginx+tomcat" class="step title" data-x="1000" data-y="0"> 
-        <div id="container">
+	<div id="nginx+tomcat" class="step title" data-x="1000" data-y="0"> 
+	  <div id="container">
 	     <div style="position: absolute; left: 600px; top: 170px;">
 		<img src="img/nginx.png" /> 
 	    </div>
@@ -80,23 +82,60 @@
 	</div>
 
 
-	 <div id="static-resources" class="step" data-x="1800" data-y="0">
-	<pre class="brush: java;">
+   <div id="static-resources" class="step" data-x="1800" data-y="0">
+    <pre class="brush: java;">
 # see http://tinyurl.com/746w35l  
 location ~ ^/static/[0-9a-fA-F] ... $ {
  # rewrite all static files into the root:
  # /static/1234/css/some.css -> /css/some.css
  rewrite "^/static/[0-9a-fA-F] ... ;
 }
-    </pre>
+   </pre>
+ </div>
 
-  </div>
+ <div id="slaves" class="step title" data-x="0" data-y="800"> 
+   <div id="container">
+     <div>
+	 <img src="img/pointer.png" /> 
+     </div>
+     <div style="position: absolute; left: 200px; top: -150px;">
+	 <b>Slaves</b>
+     </div>
+   </div>
+ </div>
 
+ <div id="slave-notes" class="step" data-x="800" data-y="800">
+   Should be quick to setup and throw away, <b>plan for high IO usage!</b>
+ </div>
+
+ <div id="puppet-logo" class="step title" data-x="1600" data-y="800"> 
+   <img src="img/puppet.png" /> 
+ </div>
+
+ <div id="gradle-puppet" class="step" data-x="2200" data-y="800">
+    <pre class="brush: java;">
+class gradle {
+
+ version = 'gradle-1.0-rc-3'
+
+  // ... 
+
+ archive { $version:
+   ensure  => present,
+   url   => "http://.../${version}-all.zip",
+   checksum  => false,
+   src_target  => '/tmp',
+   target  => '/usr/share',
+   extension => 'zip',
+   require  => Package['unzip']
+ }
+}
+  </pre>
 </div>
 
-<div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10"> </div> 
 
-  </div>
+  <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10"> </div> 
+
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/kerning.js"></script>
   <script src="js/impress.js"></script>
