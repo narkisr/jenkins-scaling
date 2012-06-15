@@ -1,0 +1,17 @@
+b#syntax {
+ -letter-transform: none rotateY(180deg)  none  none none none; }
+
+b#functions{
+ /* -letter-transform: none none  none none none;  */
+   -letter-size: 1.5em 0.5em 0.5em 0.5em 0.5em 0.5em 0.5em 0.5em 0.5em 0.5em;
+   -letter-transform: none translate3d(-25px,-10px,0)  translate3d(-25px,-10px,0) translate3d(-25px,-10px,0) translate3d(-25px,-10px,0) translate3d(-25px,-10px,0) translate3d(-25px,-10px,0) translate3d(-25px,-10px,0) translate3d(-25px,-10px,0) translate3d(-25px,-10px,0);
+}
+
+#datastructures {
+  background-image:url('http://localhost:9292/img/ds-title.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+}
+
+

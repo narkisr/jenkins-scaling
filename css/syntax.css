@@ -1,0 +1,20 @@
+.syntaxhighlighter
+{
+    background-color: black !important;
+}
+.syntaxhighlighter .line .number
+{
+    color: white !important;
+    background-color: black !important;
+}
+/* First line */
+.syntaxhighlighter .line.alt1
+{
+    background-color: black !important;
+}
+
+/* Second line */
+.syntaxhighlighter .line.alt2
+{
+    background-color: black !important;
+}

@@ -1,0 +1,75 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <title>Jenkins scalling, best practices and tips</title>
+
+    <meta name="description" content="An introduction to the clojure programming language." />
+    <meta name="author" content="Ronen Narkis" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="css/shClojureExtra.css"/>
+    <link type="text/css" rel="stylesheet" href="css/syntax.css"/>
+    <link type="text/css" rel="stylesheet" href="css/shCoreRailscasts.css"/>
+    <link type="text/css" rel="stylesheet" href="css/slides.css"/>
+    <link type="text/css" rel="stylesheet" href="css/titles.css"/>
+
+  </head>
+  <body>
+
+    <div id="impress" class="impress-not-supported">
+
+	<div class="fallback-message">
+	  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+	  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser. Upcoming version 10 of Internet Explorer <i>should</i> also handle it.</p>
+	</div>
+
+	<div id="title" class="step title" data-x="-1000" data-y="-1500" data-scale="6"> 
+	  <div id="container">
+	    <div>
+		<img src="img/jenkins-black.png" /> 
+	    </div>
+	    <div style="position: absolute; left: 300px; top: -60px;">
+		<b> Jenkins Scalling</b>
+		<blockquote> best practices and tips </blockquote>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="Agenda" class="step slide" data-x="-1500" data-y="0">
+	  <h1> Agenda </h1>
+	  <ul>
+	    <li>Master, keeping it fast</li>
+	    <li>Slaves, fast spin up, virtualization and puppet</li>
+	    <li>Configuration, scm, programmatic and DRY</li>
+	    <li>Central logging for slave tracking</li>
+	  </ul>
+	</div>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div> 
+
+  </div>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/kerning.js"></script>
+  <script src="js/impress.js"></script>
+  <script>impress();</script>
+  <script type="text/javascript" src="js/shCore.js"></script>
+  <script type="text/javascript" src="js/shBrushClojure.js"></script>
+  <script type="text/javascript" src="js/shBrushJava.js"></script>
+  <script type="text/javascript" src="js/shBrushJScript.js"></script>
+  <script type="text/javascript"> 
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['smart-tabs'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;
+    SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>
+
+
+

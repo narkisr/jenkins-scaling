@@ -1,0 +1,94 @@
+/*The main title block*/
+.title{
+    width: 600px;
+    text-align: center;
+    font-size: 60px;
+    line-height: 1;
+}
+
+.title b {
+    display: block;
+    font-size: 80px;
+    line-height: 90px;
+}
+
+.title blockquote{
+    font-size: 25px;
+    line-height: 21px;
+}
+
+/*Basic bullet style*/
+.step h1 {
+ font-size: 60px;
+ font-weight: 700;
+ margin-bottom: 10px;
+}
+
+.step li {
+  line-height: 2em;
+}
+
+
+.slide {
+  border :1px solid white;
+}
+
+
+.three {
+    unicode-bidi:bidi-override;
+    direction:rtl;
+}
+
+div#asymp{
+ -letter-transform: -transform-group(rotate(90deg) translate3d(-35px,-155px,0)) ; 
+}
+
+
+#ds-overview {
+    /* width: 700px; */
+}
+
+#ds-overview div{
+    display: inline-block;
+    -webkit-transition: 0.5s;
+    transition:         0.5s;
+}
+
+#ds-overview.active .skewing {
+    -webkit-transform: skew(-200deg);
+    -webkit-transition-delay: 1.5s;
+}
+
+#ds-overview.active .rotating {
+    -webkit-transform: rotate(-10deg);
+    -webkit-transition-delay: 1.75s;
+}
+
+#ds-overview.active .scaling {
+    -webkit-transform: scale(0.7);
+    -webkit-transition-delay: 2s;
+}
+
+/*how visible backround objects are*/
+.step:not(.active) {
+    opacity: 0.1;
+}
+
+/*how visible backround objects are*/
+.step.always-visible:not(.active){
+    opacity: 0.8;
+}
+
+.rotate-90 {
+        display: block;
+        position: absolute;
+        right: 290px;
+        top: 40;
+        -webkit-transform: rotate(-180);
+        -moz-transform: rotate(90deg);
+	  width:1em;
+}
+
+ul {
+  list-style-image:url('/img/blue-small.png');
+}
