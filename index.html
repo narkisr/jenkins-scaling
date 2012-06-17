@@ -46,6 +46,7 @@
 	    <li>Slaves, fast spin up, virtualization and puppet</li>
 	    <li>Configuration, scm, programmatic and DRY</li>
 	    <li>Central logging for slave tracking</li>
+          <li>Archiving, using artifactory or plain old folder</li>
 	  </ul>
 	</div>
 
@@ -54,8 +55,8 @@
 	     <div>
 		<img src="img/sun.png" /> 
 	    </div>
-	    <div style="position: absolute; left: 300px; top: -200px;">
-		<b class="Rotate-90">M a s t e r</b>
+	    <div style="position: absolute; left: -310; top: -110;">
+		<b class=>M a s t e r</b>
 	    </div>
 	  </div>
 	</div>
@@ -66,7 +67,6 @@
 	  managing a lot of slaves will also require resources.<br/>
 
 	  Throw a beefy VM at it (IO is less of an issue)
-	  </ul>
 	</div>
 
 	<div id="nginx+tomcat" class="step title" data-x="1000" data-y="0"> 
@@ -116,7 +116,7 @@ location ~ ^/static/[0-9a-fA-F] ... $ {
     <pre class="brush: java;">
 class gradle {
 
- version = 'gradle-1.0-rc-3'
+ version = 'gradle-1.0'
 
   // ... 
 
@@ -133,25 +133,57 @@ class gradle {
   </pre>
 </div>
 
+ <div id="configuration" class="step title" data-x="0" data-y="1400"> 
+   <div id="container">
+     <div>
+	 <img src="img/tools.png" /> 
+     </div>
+     <div style="position: absolute; left: -180; top: -20px;">
+	 <b>Config</b>
+     </div>
+    <div style="position: absolute; left: 250px; top: -20px;">
+	<b>uration</b>
+    </div>
+   </div>
+ </div>
 
-  <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10"> </div> 
+ <div id="configuration-guidlines" class="step" data-x="800" data-y="1400">
+     Managing branches from UI results in duplication, create a template project and clone, use programatic API 
+ </div>
 
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/kerning.js"></script>
-  <script src="js/impress.js"></script>
-  <script>impress();</script>
-  <script type="text/javascript" src="js/shCore.js"></script>
-  <script type="text/javascript" src="js/shBrushXml.js"></script>
-  <script type="text/javascript" src="js/shBrushJava.js"></script>
-  <script type="text/javascript" src="js/shBrushJScript.js"></script>
-  <script type="text/javascript"> 
-    SyntaxHighlighter.defaults['gutter'] = false;
-    SyntaxHighlighter.defaults['smart-tabs'] = false;
-    SyntaxHighlighter.defaults['toolbar'] = false;
-    SyntaxHighlighter.all();
-    </script>
-  </body>
-</html>
+
+ <div id="jenkins-jobs" class="step" data-x="1800" data-y="1400">
+  <pre class="brush: java;">
+job(name:'liquibase'){
+  scm {
+    url('git://github.com/...')
+  } 
+ 
+  steps {
+    gradle(version: '1.0', tasks: 'build')
+  }
+} 
+  </pre>
+</div>
+
+
+
+ <script type="text/javascript" src="js/jquery.min.js"></script>
+ <script type="text/javascript" src="js/kerning.js"></script>
+ <script src="js/impress.js"></script>
+ <script>impress();</script>
+ <script type="text/javascript" src="js/shCore.js"></script>
+ <script type="text/javascript" src="js/shBrushXml.js"></script>
+ <script type="text/javascript" src="js/shBrushJava.js"></script>
+ <script type="text/javascript" src="js/shBrushJScript.js"></script>
+ <script type="text/javascript"> 
+   SyntaxHighlighter.defaults['gutter'] = false;
+   SyntaxHighlighter.defaults['smart-tabs'] = false;
+   SyntaxHighlighter.defaults['toolbar'] = false;
+   SyntaxHighlighter.all();
+   </script>
+ </body>
+    </html>
 
 
 
