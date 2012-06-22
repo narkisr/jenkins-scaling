@@ -55,21 +55,21 @@
 	     <div>
 		<img src="img/sun.png" /> 
 	    </div>
-	    <div style="position: absolute; left: -310; top: -110;">
+	    <div style="position: absolute; left: 140; top: 80;">
 		<b class=>M a s t e r</b>
 	    </div>
 	  </div>
 	</div>
 
 
-	<div id="master-resources" class="step" data-x="250" data-y="0">
+	<div id="master-resources" class="step" data-x="650" data-y="0">
 	  Keep the webui fast!, the more jobs it will run the slower it will be,  
 	  managing a lot of slaves will also require resources.<br/>
 
 	  Throw a beefy VM at it (IO is less of an issue)
 	</div>
 
-	<div id="nginx+tomcat" class="step title" data-x="1000" data-y="0"> 
+	<div id="nginx+tomcat" class="step title" data-x="1500" data-y="0"> 
 	  <div id="container">
 	     <div style="position: absolute; left: 600px; top: 170px;">
 		<img src="img/nginx.png" /> 
@@ -82,7 +82,7 @@
 	</div>
 
 
-   <div id="static-resources" class="step" data-x="1800" data-y="0">
+   <div id="static-resources" class="step" data-x="2400" data-y="0">
     <pre class="brush: java;">
 # see http://tinyurl.com/746w35l  
 location ~ ^/static/[0-9a-fA-F] ... $ {
@@ -152,7 +152,7 @@ class gradle {
  </div>
 
 
- <div id="jenkins-jobs" class="step" data-x="1800" data-y="1400">
+ <div id="job-dsl" class="step" data-x="1800" data-y="1400">
   <pre class="brush: java;">
 job(name:'liquibase'){
   scm {
@@ -166,51 +166,96 @@ job(name:'liquibase'){
   </pre>
 </div>
 
- <div id="graylog2" class="step title" data-x="0" data-y="1800"> 
+ <div id="job-xml" class="step" data-x="2600" data-y="1400">
+  <pre class="brush: xml;">
+<builders>
+  <hudson.plugins.gradle.Gradle>
+    <description></description>
+    <switches></switches>
+    <tasks>build</tasks>
+    <rootBuildScriptDir></rootBuildScriptDir>
+    <buildFile></buildFile>
+    <gradleName>1.0</gradleName>
+    <useWrapper>false</useWrapper>
+  </hudson.plugins.gradle.Gradle>
+</builders>
+  </pre>
+</div>
+
+<div id="job-tasks" class="step" data-x="3600" data-y="1400">
+  <pre class="brush: bash;">
+$ gradle tasks
+# ...
+  Other tasks
+  -----------
+  buildJob
+  createJob
+  deleteJob
+  listjobs  
+  </pre>
+</div>
+
+<div id="tracking" class="step title" data-x="0" data-y="1800"> 
    <div id="container">
-	 <img src="img/graylog.png" /> 
+     <div>
+	 <img src="img/clock.png" /> 
      </div>
-</div>
+     <div style="position: absolute; left: -300px; top: -20px;">
+	 <b>Tracking</b>
+     </div>
+   </div>
+ </div>
 
-<div id="sponsers" class="step " data-x="0" data-y="2200"> 
-  <div id="container">
-    <div>
-	<img src="img/jfrog-and-cloudbees.png" /> 
-    </div>
-    <div style="position: absolute; left: 450px; top: 250px;">
-	<img src="img/alpha.jpg" /> 
-    </div>
-    <div style="position: absolute; left: 0; top: -200px;">
-	<b>Platinum sponsers:</b>
-    </div>
-    <div style="position: absolute; left: 0; top: 50px;">
-	<b>Silver sponser:</b>
-    </div>
-    <div style="position: absolute; left: 0; top: -350px;">
-	<h1>Thanks to our sponsers</h1>
-    </div>
+
+ <div id="graylog2" class="step " data-x="800" data-y="1800"> 
+    <div style="position: absolute; left: 380px; top: 80px;">
+     <img src="img/graylog.png" /> 
+   </div>
+   <div style="position: absolute; left: 100px; top: 40px;">
+     <img src="img/logstash.png" /> 
+   </div>
+  <div style="position: absolute; left: -140px; top: 80px;">
+    <b>Logstash</b>
   </div>
-</div>
+ </div>
+
+ <div id="sponsers" class="step " data-x="2400" data-y="2400"> 
+   <div id="container">
+     <div>
+	 <img src="img/jfrog-and-cloudbees.png" /> 
+     </div>
+     <div style="position: absolute; left: 450px; top: 250px;">
+	 <img src="img/alpha.jpg" /> 
+     </div>
+     <div style="position: absolute; left: 0; top: -200px;">
+	 <b>Platinum sponsers:</b>
+     </div>
+     <div style="position: absolute; left: 0; top: 50px;">
+	 <b>Silver sponser:</b>
+     </div>
+     <div style="position: absolute; left: 0; top: -350px;">
+	 <h1>Thanks to our sponsers</h1>
+     </div>
+   </div>
+ </div>
 
 
-
-
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/kerning.js"></script>
-<script src="js/impress.js"></script>
-<script>impress();</script>
-<script type="text/javascript" src="js/shCore.js"></script>
-<script type="text/javascript" src="js/shBrushXml.js"></script>
-<script type="text/javascript" src="js/shBrushJava.js"></script>
-<script type="text/javascript" src="js/shBrushJScript.js"></script>
-<script type="text/javascript"> 
-  SyntaxHighlighter.defaults['gutter'] = false;
-  SyntaxHighlighter.defaults['smart-tabs'] = false;
-  SyntaxHighlighter.defaults['toolbar'] = false;
-  SyntaxHighlighter.all();
-  </script>
-</body>
+ <script type="text/javascript" src="js/jquery.min.js"></script>
+ <script type="text/javascript" src="js/kerning.js"></script>
+ <script src="js/impress.js"></script>
+ <script>impress();</script>
+ <script type="text/javascript" src="js/shCore.js"></script>
+ <script type="text/javascript" src="js/shBrushXml.js"></script>
+ <script type="text/javascript" src="js/shBrushJava.js"></script>
+<script type="text/javascript" src="js/shBrushBash.js"></script>
+ <script type="text/javascript" src="js/shBrushJScript.js"></script>
+ <script type="text/javascript"> 
+   SyntaxHighlighter.defaults['gutter'] = false;
+   SyntaxHighlighter.defaults['smart-tabs'] = false;
+   SyntaxHighlighter.defaults['toolbar'] = false;
+   SyntaxHighlighter.all();
+   </script>
+ </body>
     </html>
 
 
