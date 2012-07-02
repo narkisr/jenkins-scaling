@@ -128,7 +128,7 @@ node jenkins-master {
  }
  include base-env
 }
-          
+
    </pre>
  </div>
 
@@ -189,10 +189,10 @@ class gradle {
   <div id="configuration-smells" class="step" data-x="800" data-y="2000">
     <h1>Job configuration smells</h1>
     <ul>
-       <li>Build logic leaks to job</li>
-       <li>To many steps</li>
-       <li>Shell steps</li>
-       <li>Not under scm</li>
+	 <li>Build logic leaks to job</li>
+	 <li>To many steps</li>
+	 <li>Shell steps</li>
+	 <li>Not under scm</li>
     </ul> 
  </div>
 
@@ -204,6 +204,9 @@ class gradle {
  <div id="job-dsl" class="step" data-x="2800" data-y="2000">
   <pre class="brush: java;">
 job(name:'liquibase'){
+
+  slave(name:'jenkins-slave')  
+
   scm {
     url('git://github.com/...')
   } 
@@ -268,8 +271,68 @@ $ gradle tasks
   </div>
 </div>
 
-  <div id="sponsers" class="step " data-x="2400" data-y="3000"> 
-   <div id="container">
+
+<div id="archiving-open" class="step title" data-x="0" data-y="3200"> 
+  <div id="container">
+    <div>
+	<img src="img/clock.png" /> 
+    </div>
+    <div style="position: absolute; left: -300px; top: -20px;">
+	<b>Archiving</b>
+    </div>
+  </div>
+</div>
+
+<div id="archiving" class="step" data-x="800" data-y="3200">
+   <h1>Archiving</h1>
+    <ul>
+	 <li>Should be backed up</li>
+	 <li>Jenkins really slow at this</li>
+	 <li>Fast download, deployment source </li>
+    </ul> 
+ </div>
+
+<div id="archiving options" class="step" data-x="1600" data-y="3200">
+   <h1>Options</h1>
+    <ul>
+	 <li>Artifactory (it rocks!)</li>
+	 <li>Folder under nginx</li>
+	 <li>Folder under Rsync server</li>
+	 <li>AWS S3</li>
+    </ul> 
+ </div>
+
+
+
+<div id="summary" class="step title" data-x="0" data-y="4000" data-rotate="0" data-scale="3"> 
+  <b>Summary</b>
+</div>
+
+
+<div id="links" class="step" data-x="-600" data-y="4000" data-rotate="0" data-scale="1" > 
+  <h1>Resources</h1>
+  <a href="https://github.com/narkisr/jenkins-jobs">Jenkins jobs dsl</a>
+  <a href="http://graylog2.com/">graylog2</a><br/>
+  <a href="http://logstash.net/">logstash</a>
+  <a href="https://github.com/narkisr/jenkins-sandbox">jenkins-sandbox</a>
+</div>
+
+<div id="resource" class="step" data-x="1000" data-y="4000" data-rotate="0" data-scale="1" > 
+  <div class="content bullets" ref="summary/01-about/2" style="margin-top: 128.5px; ">
+    <h1>Find me online</h1>
+
+    <a href="http://il.linkedin.com/in/narkisr" >linkedin</a> 
+    <a href="http://twitter.com/#!/narkisr/">@narkisr</a><br>
+    <a href="https://github.com/narkisr">github</a> 
+    <a href="http://narkisr.com">narkisr.com</a>
+    <a href="http://www.lambda.org.il/">Sayeret-Lambda</a>
+
+  </div>
+</div>
+
+
+<div id="sponsers" class="step" data-x="400" data-y="4600" data-scale="1"> 
+  <div id="container">
     <div>
 	<img src="img/jfrog-and-cloudbees.png" /> 
     </div>
