@@ -271,6 +271,48 @@ $ gradle tasks
   </div>
 </div>
 
+ <div id="logstash-conf" class="step" data-x="1600" data-y="2600">
+  <pre class="brush: java;">
+input {
+ file {
+  type => "jenkins"
+  path => "/var/log/jenkins/jenkins.log"
+ }
+
+ file {
+  type => "jenkins-slave"
+  path => "/var/.../slave-jenkins-slave.log"
+ }
+}
+
+output {
+  stdout { }
+
+  gelf {
+     host => "graylog2"
+  }
+} 
+  </pre>
+</div>
+
+<div id="watcher" class="step" data-x="2600" data-y="2600">
+  <pre class="brush: java;">
+i = Inotify.new
+LOGGER = GELF::Logger.new("graylog2" ..)
+
+t = Thread.new do
+ i.each_event do |ev|
+  path = "#{ARGV[0]}/#{ev.name}"
+   if(File.directory?(path) && ...)
+    log_job("#{path}/log") if File.exists? ..
+   end
+  end
+ end
+end
+
+i.add_watch(ARGV[0], Inotify::CREATE ...)
+t.join
+</div>
 
 <div id="archiving-open" class="step title" data-x="0" data-y="3200"> 
   <div id="container">
@@ -303,7 +345,6 @@ $ gradle tasks
  </div>
 
 
-
 <div id="summary" class="step title" data-x="0" data-y="4000" data-rotate="0" data-scale="3"> 
   <b>Summary</b>
 </div>
@@ -329,7 +370,6 @@ $ gradle tasks
 
   </div>
 </div>
-
 
 <div id="sponsers" class="step" data-x="400" data-y="4600" data-scale="1"> 
   <div id="container">
@@ -362,6 +402,7 @@ $ gradle tasks
 <script type="text/javascript" src="js/shBrushJava.js"></script>
 <script type="text/javascript" src="js/shBrushBash.js"></script>
 <script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushRuby.js"></script>
 <script type="text/javascript"> 
   SyntaxHighlighter.defaults['gutter'] = false;
   SyntaxHighlighter.defaults['smart-tabs'] = false;
