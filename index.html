@@ -113,25 +113,6 @@ location ~ ^/static/[0-9a-fA-F] ... $ {
    </pre>
  </div>
 
-   <div id="puppet master" class="step" data-x="3400" data-y="800">
-    <pre class="brush: java;">
-node jenkins-master {
- include jenkins
- jenkins::plugin {
-  "git" : version => "1.1.11"; 
- }
- jenkins::plugin {
-  "gradle" : version => "1.16"; 
- }
- jenkins::plugin {
-  "ssh-slaves" : version => "0.21"; 
- }
- include base-env
-}
-
-   </pre>
- </div>
-
  <div id="slaves" class="step title" data-x="0" data-y="1400"> 
    <div id="container">
      <div>
@@ -144,33 +125,25 @@ node jenkins-master {
  </div>
 
  <div id="slave-notes" class="step" data-x="800" data-y="1400">
-   Should be quick to setup and throw away, <b>plan for high IO usage!</b>
+   <ul>
+	<li>Should be quick to setup and throw away</li>
+      <li><b>plan for high IO usage!</b> (not single hypervisor)</li>
+      <li>Monitor Cpu and Disk</li>
+      <li>Segregate heavy jobs</li>
+   </ul>
  </div>
 
- <div id="puppet-logo" class="step title" data-x="1600" data-y="1400"> 
+ <div id="puppet-logo" class="step title" data-x="1400" data-y="1400"> 
    <img src="img/puppet.png" /> 
  </div>
 
- <div id="gradle-puppet" class="step" data-x="2200" data-y="1400">
-    <pre class="brush: java;">
-class gradle {
-
- version = 'gradle-1.0'
-
-  // ... 
-
- archive { $version:
-   ensure  => present,
-   url   => "http://.../${version}-all.zip",
-   checksum  => false,
-   src_target  => '/tmp',
-   target  => '/usr/share',
-   extension => 'zip',
-   require  => Package['unzip']
- }
-}
-  </pre>
-</div>
+ <div id="puppet use" class="step" data-x="2000" data-y="1400">
+   <ul>
+	<li>Configure Jenkins master and its plugins</li>
+      <li>Configure build tools and sdk's</li>
+      <li>Install logging/monitoring agents</li>
+   </ul>
+ </div>
 
  <div id="configuration" class="step title" data-x="0" data-y="2000"> 
    <div id="container">
@@ -234,10 +207,10 @@ job(name:'liquibase'){
   </pre>
 </div>
 
-<div id="job-tasks" class="step" data-x="4400" data-y="2000">
-  <pre class="brush: bash;">
-$ gradle tasks
-# ...
+<div id="job-tasks" class="step" data-x="4600" data-y="2000">
+  <pre class="brush: ruby;">
+% gradle tasks
+
   Other tasks
   -----------
   buildJob
@@ -259,7 +232,7 @@ $ gradle tasks
 </div>
 
 
-<div id="graylog2" class="step " data-x="1000" data-y="2600"> 
+<div id="graylog2" class="step " data-x="800" data-y="2600"> 
   <div style="position: absolute; left: 380px; top: 80px;">
     <img src="img/graylog.png" /> 
   </div>
@@ -271,7 +244,7 @@ $ gradle tasks
   </div>
 </div>
 
- <div id="logstash-conf" class="step" data-x="1600" data-y="2600">
+ <div id="logstash-conf" class="step" data-x="1400" data-y="2600">
   <pre class="brush: java;">
 input {
  file {
@@ -295,18 +268,17 @@ output {
   </pre>
 </div>
 
-<div id="watcher" class="step" data-x="2600" data-y="2600">
+<div id="watcher" class="step" data-x="2300" data-y="2600">
   <pre class="brush: java;">
 i = Inotify.new
 LOGGER = GELF::Logger.new("graylog2" ..)
 
 t = Thread.new do
  i.each_event do |ev|
-  path = "#{ARGV[0]}/#{ev.name}"
+   path = "#{ARGV[0]}/#{ev.name}"
    if(File.directory?(path) && ...)
-    log_job("#{path}/log") if File.exists? ..
+     log_job("#{path}/log") if File.exists? ..
    end
-  end
  end
 end
 
@@ -325,32 +297,69 @@ t.join
   </div>
 </div>
 
-<div id="archiving" class="step" data-x="500" data-y="3200">
-   <h1>DO's</h1>
-    <ul>
-	 <li>Back it up</li>
-	 <li>Jenkins isn't optimal for this</li>
-	 <li>Fast download (deployment source)</li>
-    </ul> 
- </div>
+<div id="archiving" class="step" data-x="400" data-y="3200">
+  <h1>DO's</h1>
+  <ul>
+    <li>Back it up</li>
+    <li>Jenkins isn't optimal for this</li>
+    <li>Fast download (deployment source)</li>
+  </ul> 
+</div>
 
-<div id="archiving options" class="step" data-x="1200" data-y="3200">
-   <h1>Alternatives</h1>
-    <ul>
-	 <li>Artifactory (it rocks!)</li>
-	 <li>Serve over http (nginx)</li>
-	 <li>Serve deltas (Rsync server)</li>
-	 <li>AWS S3</li>
-    </ul> 
- </div>
+<div id="archiving options" class="step" data-x="1000" data-y="3200">
+  <h1>Alternatives</h1>
+  <ul>
+    <li>Artifactory (it rocks!)</li>
+    <li>Serve over http (nginx)</li>
+    <li>Serve deltas (Rsync server)</li>
+    <li>AWS S3</li>
+  </ul> 
+</div>
 
 
-<div id="summary" class="step title" data-x="0" data-y="4000" data-rotate="0" data-scale="3"> 
+<div id="vagrant" class="step title" data-x="0" data-y="4000"> 
+  <div id="container">
+    <div>
+	<img src="img/vagrant.png" /> 
+    </div>
+    <div style="position: absolute; left: 50px; top: 100px;">
+	<b>Vagrant</b>
+    </div>
+  </div>
+</div>
+
+<div id="vagrant file" class="step" data-x="600" data-y="4000">
+  <pre class="brush: java;">
+Vagrant::Config.run do |config|
+
+ config.vm.define :master do |master|
+   # master configuration
+ end
+
+  config.vm.define :slave do |slave|
+   # slave configuration
+  end
+
+end
+  </pre>
+</div>
+
+<div id="scale" class="step" data-x="1500" data-y="4000">
+ <ul>
+  <li>Isolated Sandboxing</li>
+  <li>Fast create/destroy cycle</li>
+  <li>Puppet integration</li>
+  <li>Internal networks</li>
+ </ul>
+</div>
+
+
+<div id="summary" class="step title" data-x="0" data-y="4800" data-rotate="0" data-scale="3"> 
   <b>Summary</b>
 </div>
 
 
-<div id="links" class="step" data-x="-600" data-y="4000" data-rotate="0" data-scale="1" > 
+<div id="links" class="step" data-x="-600" data-y="4800" data-rotate="0" data-scale="1" > 
   <h1>Resources</h1>
   <a href="https://github.com/narkisr/jenkins-jobs">Jenkins jobs dsl</a>
   <a href="http://graylog2.com/">graylog2</a><br/>
@@ -358,7 +367,7 @@ t.join
   <a href="https://github.com/narkisr/jenkins-sandbox">jenkins-sandbox</a>
 </div>
 
-<div id="resource" class="step" data-x="1000" data-y="4000" data-rotate="0" data-scale="1" > 
+<div id="resource" class="step" data-x="1000" data-y="4800" data-rotate="0" data-scale="1" > 
   <div class="content bullets" ref="summary/01-about/2" style="margin-top: 128.5px; ">
     <h1>Find me online</h1>
 
@@ -371,7 +380,7 @@ t.join
   </div>
 </div>
 
-<div id="sponsers" class="step" data-x="400" data-y="4600" data-scale="1"> 
+<div id="sponsers" class="step" data-x="400" data-y="5600" data-scale="1"> 
   <div id="container">
     <div>
 	<img src="img/jfrog-and-cloudbees.png" /> 
